@@ -131,8 +131,8 @@ jobs:
       META_FILE_PATH_PREFIX: /var/www/freeswitch/public/${{ matrix.release }}/${{ github.ref_name }}/${{ github.run_id }}-${{ github.run_number }}
       PLATFORM: ${{ matrix.platform.name }}
       REPO_DOMAIN: "freeswitch.signalwire.com"
-      TARGET_ARTIFACT_NAME: ${{ matrix.os }}-${{ matrix.version }}-${{ matrix.platform.name }}-public-${{ matrix.release }}-artifact"
-      UPLOAD_BUILD_ARTIFACTS: >-
+      TARGET_ARTIFACT_NAME: "${{ matrix.os }}-${{ matrix.version }}-${{ matrix.platform.name }}-public-${{ matrix.release }}-artifact"
+      UPLOAD_BUILD_ARTIFACTS: 
         ${{
           (
             github.event_name == 'push' &&
