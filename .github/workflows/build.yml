@@ -132,11 +132,14 @@ jobs:
       PLATFORM: ${{ matrix.platform.name }}
       REPO_DOMAIN: "freeswitch.signalwire.com"
       TARGET_ARTIFACT_NAME: "${{ matrix.os }}-${{ matrix.version }}-${{ matrix.platform.name }}-public-${{ matrix.release }}-artifact"
-      UPLOAD_BUILD_ARTIFACTS: ${{ 
-  (github.event_name == 'push' && github.repository == 'signalwire/freeswitch' && contains(fromJSON('["main"]'), github.ref_name)) 
-  || 
-  (github.event_name == 'workflow_dispatch' && inputs.publish) 
-}}
+     UPLOAD_BUILD_ARTIFACTS: 
+  ${{
+    (
+      github.event_name == 'push' &&
+      github.repository == 'signalwire/freeswitch' &&
+      contains(fromJSON('["main"]'), github.ref_name) ||
+    (github.event_name == 'workflow_dispatch' && inputs.publish)
+  }}
 
     secrets:
       GH_BOT_DEPLOY_TOKEN: ${{ secrets.GHCR_TOKEN }}
